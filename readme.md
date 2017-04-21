@@ -1,5 +1,5 @@
 #Pass Through Server
-A simple pass through server for accessing brewerydb API from a client. 
+A simple pass through server for accessing Yelp API from a client.
 
 Only a few endpoints are exposed by default.
 
@@ -10,18 +10,18 @@ Clone this repository and run
 
 to install dependencies.
 
-Then set your brewerydb API key in the config.js file and run
+Then set your Yelp API key and Yelp client secret in the config.js file and run
 
 `npm start`
 
 By default the server starts on port 3000.
 
 ##Endpoints
-###/beers
-This endpoint maps to /search on the BreweryDB API. It accepts a query  q
-which is the search term and returns the response from the API. 
+###/bars
+This endpoint maps to /search on the Yelp API. It accepts a query  city
+which is the name of the city in which you wish to search for bars.
 
 To test this API use postman or otherwise and call:
 
-`http://localhost:3000/beers?q=coors`
+`http://localhost:3000/bars?city=Atlanta`
 
