@@ -1,16 +1,43 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var cors = require('cors');
+const  express = require('express');
+const  path = require('path');
+const  favicon = require('serve-favicon');
+const  logger = require('morgan');
+const  cookieParser = require('cookie-parser');
+const  bodyParser = require('body-parser');
+const  cors = require('cors');
+const  session = require('express-session');
+const  passport = require('passport');
+const  LocalStrategy = require('passport-local').Strategy;
+const  index = require('./routes/index');
+const  users = require('./routes/users');
+const  bars = require('./routes/bars');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var bars = require('./routes/bars');
+const app = express();
 
-var app = express();
+app.use(session({
+    secret:'yo'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        findUser(username, function (err, user) {
+            if (err) {
+                return done(err)
+            }
+            if (!user) {
+                return done(null, false)
+            }
+            if (password !== user.password  ) {
+                return done(null, false)
+            }
+            return done(null, user)
+        })
+    }
+))
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
