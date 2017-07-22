@@ -1,9 +1,9 @@
-#Pass Through Server
+# Pass Through Server
 A simple pass through server for accessing Yelp API from a client.
 
 Only a few endpoints are exposed by default.
 
-##How to Use
+## How to Use
 Clone this repository and run
 
 `npm install`
@@ -16,8 +16,8 @@ Then set your Yelp API key and Yelp client secret in the config.js file and run
 
 By default the server starts on port 3000.
 
-##Endpoints
-###/bars
+## Endpoints
+### /bars
 This endpoint maps to /search on the Yelp API. It accepts a query  city
 which is the name of the city in which you wish to search for bars.
 
